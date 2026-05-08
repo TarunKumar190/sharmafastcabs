@@ -12,8 +12,9 @@ const GlobalStyles = () => (
       --night: #0B1120; --ink: #1A2233; --sand: #FDF6EC; --mist: #F0F4F8;
       --white: #FFFFFF; --text: #2D3748; --text-lt: #718096; --border: #E2E8F0;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; height: auto; }
     h1,h2,h3,h4,h5 { font-family: 'Playfair Display', serif; }
     a { text-decoration: none; color: inherit; }
 
@@ -33,8 +34,9 @@ const GlobalStyles = () => (
     .nav-top a:hover { color: var(--gold); }
     .nav-wa { background: #25D366 !important; color: #fff !important; padding: 0.2rem 0.9rem !important; border-radius: 999px !important; font-weight: 700 !important; }
     .nav-main { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--gold); }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 900; color: var(--gold); }
     .nav-logo span { color: var(--white); }
+    .site-logo { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; display: block; }
     .nav-links { display: flex; gap: 0.2rem; align-items: center; }
     .nl { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500; padding: 0.45rem 0.85rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
     .nl:hover { color: var(--gold); background: rgba(245,166,35,0.1); }
@@ -56,7 +58,7 @@ const GlobalStyles = () => (
     .bc a:hover { text-decoration: underline; }
 
     /* HERO */
-    .hero { position: relative; height: 92vh; min-height: 520px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .hero { position: relative; height: 92vh; height: 92svh; min-height: 520px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     .hero-ov { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,17,32,0.8) 0%, rgba(13,110,110,0.45) 100%); }
     .hero-content { position: relative; text-align: center; color: var(--white); padding: 0 1.5rem; max-width: 900px; }
@@ -264,7 +266,7 @@ const GlobalStyles = () => (
     .footer-main { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 3rem; }
     @media(max-width:900px) { .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; } }
     @media(max-width:560px) { .footer-main { grid-template-columns: 1fr; } }
-    .f-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--gold); margin-bottom: 1rem; display: block; }
+    .f-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; color: var(--gold); margin-bottom: 1rem; }
     .f-logo span { color: var(--white); }
     .f-desc { color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
     .f-contact { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-bottom: 0.6rem; }
@@ -299,6 +301,72 @@ const GlobalStyles = () => (
     .quote-banner-text { flex: 1; }
     .quote-banner-text h3 { font-family: 'DM Sans'; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
     .quote-banner-text p { font-size: 0.88rem; color: var(--text-lt); }
+
+    /* SHARED SMALL-SCREEN HELPERS */
+    .filter-bar { background: var(--sand); padding: 1.5rem 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .filter-chip {
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      border: 2px solid var(--teal);
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.86rem;
+      background: transparent;
+      color: var(--teal);
+    }
+    .filter-chip.active { background: var(--teal); color: var(--white); }
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+
+    /* TABLET */
+    @media (max-width: 900px) {
+      .nav-main, .bc, .sec, .cta-strip, .ph-content, .ph-simple, .detail-wrap, .f-bottom { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .hero { min-height: 460px; }
+      .detail-sidebar { position: static; }
+    }
+
+    /* PHONE */
+    @media (max-width: 640px) {
+      .nav-main { height: 60px; }
+      .nav-logo { font-size: 1rem; gap: 0.45rem; }
+      .site-logo { width: 34px; height: 34px; }
+      .hero { min-height: 420px; }
+      .hero-content { padding: 0 1rem; }
+      .hero-sub, .ph-sub, .sec-sub { font-size: 0.95rem; }
+      .hero-btns { width: 100%; }
+      .hero-btns .btn-primary, .hero-btns .btn-outline { width: 100%; justify-content: center; }
+      .sec { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .stats-band { padding: 1.4rem 1rem; gap: 0.75rem; }
+      .stat-val { font-size: 1.7rem; }
+      .card-img { height: 200px; }
+      .card-actions { flex-direction: column; }
+      .svc-card { align-items: flex-start; flex-direction: column; }
+      .svc-btns { width: 100%; }
+      .btn-sv, .btn-svv { flex: 1; text-align: center; }
+      .detail-wrap { padding-top: 2.5rem; gap: 2rem; }
+      .detail-img { height: 260px; border-radius: 14px; }
+      .info-box-grid { grid-template-columns: 1fr; }
+      .quote-banner { padding: 1.1rem; gap: 0.9rem; }
+      .quote-banner .btn-wa { width: 100%; justify-content: center; }
+      .sidebar-card-head, .sidebar-card-body, .sidebar-actions { padding-left: 1rem; padding-right: 1rem; }
+      .sidebar-actions .btn-wa, .sidebar-actions .btn-primary, .sidebar-actions .btn-teal { font-size: 0.9rem; }
+      .form-card { padding: 1.4rem; border-radius: 14px; }
+      .footer-main { padding: 2.8rem 1.25rem 2rem; }
+      .f-logo { font-size: 1.1rem; }
+      .split-grid { grid-template-columns: 1fr; }
+      .filter-bar { padding: 1rem; gap: 0.55rem; justify-content: flex-start; }
+      .filter-chip { font-size: 0.8rem; padding: 0.42rem 0.9rem; }
+      .float-btns { right: 0.9rem; bottom: 1rem; }
+      .float-wa, .float-call { width: 50px; height: 50px; }
+    }
+
+    @media (max-width: 420px) {
+      .nav-main, .bc, .sec, .cta-strip, .ph-content, .ph-simple, .detail-wrap, .f-bottom { padding-left: 1rem; padding-right: 1rem; }
+      .hero-title { font-size: clamp(1.9rem, 9vw, 2.4rem); }
+      .ph-title { font-size: clamp(1.7rem, 8.5vw, 2.3rem); }
+      .contact-mini a { font-size: 1.1rem; }
+    }
   `}</style>
 );
 
@@ -776,7 +844,7 @@ const Nav = () => {
         <a href="https://wa.me/918979331110" target="_blank" rel="noreferrer" className="nav-wa">💬 WhatsApp</a>
       </div>
       <div className="nav-main">
-        <Link to="/" className="nav-logo">Sharma <span>Fast Cabs</span></Link>
+        <Link to="/" className="nav-logo"><img src="/favicon.png" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
         <div className="nav-links">
           <Link to="/" className="nl">Home</Link>
           <Link to="/packages" className="nl">Packages</Link>
@@ -806,7 +874,7 @@ const Footer = () => (
   <footer className="footer">
     <div className="footer-main">
       <div>
-        <Link to="/" className="f-logo">Sharma <span>Fast Cabs</span></Link>
+        <Link to="/" className="f-logo"><img src="/favicon.png" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
         <p className="f-desc">Uttarakhand's most trusted cab and travel partner since 2009. Mountains, temples, wildlife — we get you there safely.</p>
         <a href="tel:+918979331110" className="f-contact">📞 8979331110</a>
         <a href="https://wa.me/918979331110" className="f-contact" target="_blank" rel="noreferrer">💬 WhatsApp: 8979331110</a>
@@ -970,9 +1038,9 @@ const Packages = () => {
     <>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Packages", href: "/packages" }]} />
       <div className="ph-simple"><h1>Tour Packages 🗺️</h1><p>Handcrafted Uttarakhand experiences for every kind of traveller</p></div>
-      <div style={{ background: "var(--sand)", padding: "1.5rem 2rem", display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+      <div className="filter-bar">
         {filters.map(f => (
-          <button key={f} onClick={() => setFilter(f)} style={{ padding: "0.5rem 1.3rem", borderRadius: "999px", border: "2px solid var(--teal)", fontWeight: 600, fontFamily: "DM Sans,sans-serif", cursor: "pointer", transition: "all 0.2s", fontSize: "0.88rem", background: filter === f ? "var(--teal)" : "transparent", color: filter === f ? "var(--white)" : "var(--teal)" }}>{f}</button>
+          <button key={f} onClick={() => setFilter(f)} className={`filter-chip${filter === f ? " active" : ""}`}>{f}</button>
         ))}
       </div>
       <section className="sec sec-alt">
@@ -1064,7 +1132,7 @@ const PackageDetail = () => {
             </ul>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2.5rem" }}>
+          <div className="split-grid">
             <div className="detail-section" style={{ margin: 0, background: "var(--teal-xlt)", borderRadius: 14, padding: "1.5rem" }}>
               <h3 style={{ borderLeftColor: "var(--teal)", marginBottom: "1rem" }}>What's Included ✓</h3>
               <ul className="detail-list">
@@ -1156,13 +1224,13 @@ const Services = () => {
     <>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }]} />
       <div className="ph-simple"><h1>Cab & Taxi Services 🚖</h1><p>100+ routes covered across Uttarakhand, Delhi NCR & North India</p></div>
-      <div style={{ background: "var(--sand)", padding: "1.5rem 2rem" }}>
+      <div className="filter-bar" style={{ justifyContent: "stretch" }}>
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
           <input className="svc-search" placeholder="🔍 Search a route or service..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
         <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", justifyContent: "center" }}>
           {["All", ...categories].map(c => (
-            <button key={c} onClick={() => setCat(c)} style={{ padding: "0.4rem 1rem", borderRadius: "999px", border: "2px solid var(--teal)", fontWeight: 600, fontFamily: "DM Sans", cursor: "pointer", fontSize: "0.8rem", background: cat === c ? "var(--teal)" : "transparent", color: cat === c ? "var(--white)" : "var(--teal)", whiteSpace: "nowrap" }}>{c}</button>
+            <button key={c} onClick={() => setCat(c)} className={`filter-chip${cat === c ? " active" : ""}`} style={{ whiteSpace: "nowrap" }}>{c}</button>
           ))}
         </div>
       </div>
@@ -1332,9 +1400,9 @@ const Destinations = () => {
     <>
       <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Destinations", href: "/destinations" }, ...(selectedCat ? [{ label: selectedCat, href: "/destinations" }] : [])]} />
       <div className="ph-simple"><h1>Explore Destinations 🌍</h1><p>Discover Uttarakhand by category — hills, temples, adventures & wildlife</p></div>
-      <div style={{ background: "var(--sand)", padding: "1.5rem 2rem", display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center" }}>
+      <div className="filter-bar">
         {["All", ...categories].map(c => (
-          <button key={c} onClick={() => setSelectedCat(c === "All" ? null : c)} style={{ padding: "0.5rem 1.2rem", borderRadius: "999px", border: "2px solid var(--teal)", fontWeight: 600, fontFamily: "DM Sans", cursor: "pointer", fontSize: "0.85rem", background: (c === "All" && !selectedCat) || c === selectedCat ? "var(--teal)" : "transparent", color: (c === "All" && !selectedCat) || c === selectedCat ? "var(--white)" : "var(--teal)" }}>{c}</button>
+          <button key={c} onClick={() => setSelectedCat(c === "All" ? null : c)} className={`filter-chip${(c === "All" && !selectedCat) || c === selectedCat ? " active" : ""}`}>{c}</button>
         ))}
       </div>
       <section className="sec sec-alt">
