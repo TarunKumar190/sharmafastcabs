@@ -36,7 +36,7 @@ const GlobalStyles = () => (
     .nav-main { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 64px; }
     .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 900; color: var(--gold); }
     .nav-logo span { color: var(--white); }
-    .site-logo { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; display: block; }
+    .site-logo { width: 40px; height: 40px; object-fit: cover; border-radius: 50%; display: block; background: var(--white); padding: 3px; box-shadow: 0 2px 10px rgba(0,0,0,0.18); }
     .nav-links { display: flex; gap: 0.2rem; align-items: center; }
     .nl { color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500; padding: 0.45rem 0.85rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
     .nl:hover { color: var(--gold); background: rgba(245,166,35,0.1); }
@@ -330,7 +330,7 @@ const GlobalStyles = () => (
     @media (max-width: 640px) {
       .nav-main { height: 60px; }
       .nav-logo { font-size: 1rem; gap: 0.45rem; }
-      .site-logo { width: 34px; height: 34px; }
+      .site-logo { width: 34px; height: 34px; padding: 2px; }
       .hero { min-height: 420px; }
       .hero-content { padding: 0 1rem; }
       .hero-sub, .ph-sub, .sec-sub { font-size: 0.95rem; }
@@ -844,7 +844,7 @@ const Nav = () => {
         <a href="https://wa.me/918979331110" target="_blank" rel="noreferrer" className="nav-wa">💬 WhatsApp</a>
       </div>
       <div className="nav-main">
-        <Link to="/" className="nav-logo"><img src="/favicon.png" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
+        <Link to="/" className="nav-logo"><img src="/favicon.svg" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
         <div className="nav-links">
           <Link to="/" className="nl">Home</Link>
           <Link to="/packages" className="nl">Packages</Link>
@@ -874,7 +874,7 @@ const Footer = () => (
   <footer className="footer">
     <div className="footer-main">
       <div>
-        <Link to="/" className="f-logo"><img src="/favicon.png" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
+        <Link to="/" className="f-logo"><img src="/favicon.svg" alt="Sharma Fast Cabs" className="site-logo"/>Sharma <span>Fast Cabs</span></Link>
         <p className="f-desc">Uttarakhand's most trusted cab and travel partner since 2009. Mountains, temples, wildlife — we get you there safely.</p>
         <a href="tel:+918979331110" className="f-contact">📞 8979331110</a>
         <a href="https://wa.me/918979331110" className="f-contact" target="_blank" rel="noreferrer">💬 WhatsApp: 8979331110</a>
