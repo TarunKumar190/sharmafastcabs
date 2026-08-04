@@ -45,6 +45,24 @@ const GlobalStyles = () => (
     .nl-phone { color: var(--gold) !important; font-weight: 700 !important; }
     .ham { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .ham span { display: block; width: 22px; height: 2px; background: var(--white); margin: 5px 0; border-radius: 2px; transition: all 0.3s; }
+    .nav-call-btn { display: none; }
+      @media(max-width:900px) {
+      .nav-call-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #25D366;
+      color: var(--night);
+      font-size: 1.05rem;
+      margin-right: 0.5rem;
+      text-decoration: none;
+      flex-shrink: 0;
+      }
+      .nav-call-btn:active { transform: scale(0.94); }
+    }
     .mob-menu { display: none; flex-direction: column; background: var(--ink); border-top: 1px solid rgba(245,166,35,0.2); padding: 1rem; }
     .mob-menu.open { display: flex; }
     .mob-link { color: rgba(255,255,255,0.8); padding: 0.75rem 1rem; border-radius: 8px; font-weight: 500; font-size: 0.95rem; transition: background 0.2s, color 0.2s; }
@@ -854,9 +872,12 @@ const Nav = () => {
           <a href="tel:+918979331110" className="nl nl-phone">📞 8979331110</a>
           <Link to="/contact" className="nl nl-cta">Book Now</Link>
         </div>
-        <button className="ham" onClick={() => setOpen(o => !o)} aria-label="Menu">
-          <span /><span /><span />
-        </button>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <a href="tel:+918979331110" className="nav-call-btn" aria-label="Call Us">📞</a>
+          <button className="ham" onClick={() => setOpen(o => !o)} aria-label="Menu">
+            <span /><span /><span />
+          </button>
+        </div>
       </div>
       <div className={`mob-menu${open ? " open" : ""}`}>
         {[["🏠 Home", "/"], ["🗺️ Packages", "/packages"], ["🚖 Services", "/services"], ["🌍 Destinations", "/destinations"], ["ℹ️ About", "/about"]].map(([l, to]) => (
@@ -868,6 +889,7 @@ const Nav = () => {
     </nav>
   );
 };
+
 
 /* ─── FOOTER ─── */
 const Footer = () => (
